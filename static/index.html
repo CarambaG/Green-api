@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GREEN-API | WhatsApp API Client</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
+                <circle cx="16" cy="16" r="15" fill="#00B548" stroke="#00B548" stroke-width="2"/>
+                <path d="M12 16L15 19L21 13" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>GREEN-API</span>
+        </div>
+        <p class="tagline">WhatsApp API Integration Client</p>
+    </header>
+
+    <main>
+        <div class="main-grid">
+            <!-- LEFT COLUMN: Configuration + Methods -->
+            <div class="left-column">
+                <!-- Configuration Section -->
+                <section class="card config-section">
+                    <h2 class="card-title">Connection Settings</h2>
+                    <p class="card-desc">Enter your GREEN-API credentials</p>
+
+                    <div class="form-group">
+                        <label for="idInstance">Instance ID (idInstance)</label>
+                        <input
+                                type="text"
+                                id="idInstance"
+                                placeholder="1103493527"
+                                class="input-field"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apiToken">API Token (apiToken)</label>
+                        <input
+                                type="password"
+                                id="apiToken"
+                                placeholder="••••••••••••••••••••"
+                                class="input-field"
+                        />
+                    </div>
+
+                    <div class="auth-hint">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        <p>Get credentials from <a href="https://green-api.com" target="_blank">green-api.com</a></p>
+                    </div>
+                </section>
+
+                <!-- Methods Section -->
+                <section class="card methods-section">
+                    <h2 class="card-title">API Methods</h2>
+                    <p class="card-desc">Test GREEN-API endpoints</p>
+
+                    <!-- Get Settings -->
+                    <div class="method-card compact">
+                        <h3>Get Settings</h3>
+                        <p class="method-desc">Retrieve instance settings</p>
+                        <button class="btn btn-primary btn-full" onclick="getSettings()">
+                            <span>getSettings</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Get State -->
+                    <div class="method-card compact">
+                        <h3>Get State Instance</h3>
+                        <p class="method-desc">Check authorization status</p>
+                        <button class="btn btn-primary btn-full" onclick="getStateInstance()">
+                            <span>getStateInstance</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Send Message -->
+                    <div class="method-card expanded">
+                        <h3>Send Message</h3>
+                        <p class="method-desc">Send text message to WhatsApp</p>
+
+                        <div class="form-group">
+                            <label for="chatId1">Chat ID</label>
+                            <input
+                                    type="text"
+                                    id="chatId1"
+                                    placeholder="79991234567@c.us"
+                                    class="input-field"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea
+                                    id="message"
+                                    placeholder="Type your message..."
+                                    rows="3"
+                                    class="input-field textarea"
+                            ></textarea>
+                        </div>
+
+                        <button class="btn btn-primary btn-full" onclick="sendMessage()">
+                            <span>Send Message</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Send File -->
+                    <div class="method-card expanded">
+                        <h3>Send File by URL</h3>
+                        <p class="method-desc">Send file to WhatsApp</p>
+
+                        <div class="form-group">
+                            <label for="chatId2">Chat ID</label>
+                            <input
+                                    type="text"
+                                    id="chatId2"
+                                    placeholder="79991234567@c.us"
+                                    class="input-field"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fileUrl">File URL</label>
+                            <input
+                                    type="url"
+                                    id="fileUrl"
+                                    placeholder="https://example.com/file.pdf"
+                                    class="input-field"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fileName">File Name</label>
+                            <input
+                                    type="text"
+                                    id="fileName"
+                                    placeholder="document.pdf"
+                                    class="input-field"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="caption">Caption (Optional)</label>
+                            <textarea
+                                    id="caption"
+                                    placeholder="Add caption..."
+                                    rows="2"
+                                    class="input-field textarea"
+                            ></textarea>
+                        </div>
+
+                        <button class="btn btn-primary btn-full" onclick="sendFileByUrl()">
+                            <span>Send File</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- RIGHT COLUMN: Response -->
+            <div class="right-column">
+                <section class="card response-section">
+                    <div class="response-header">
+                        <h2 class="card-title">Response</h2>
+                        <button class="btn btn-sm btn-outline" onclick="clearResponse()">Clear</button>
+                    </div>
+
+                    <div class="response-container">
+                        <pre id="response" class="response-output">{}</pre>
+                    </div>
+
+                    <div class="response-info">
+                        <p><strong>Status:</strong> Ready</p>
+                        <p id="responseTime" class="text-muted"></p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 GREEN-API | <a href="https://green-api.com" target="_blank">Visit Official Site</a></p>
+        <p class="footer-small">WhatsApp API Integration • Powered by Go</p>
+    </footer>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
